@@ -23,15 +23,18 @@ class AmiiboModelAdapter extends TypeAdapter<AmiiboModel> {
       imageUrl: fields[3] as String,
       gameSeries: fields[4] as String,
       type: fields[5] as String,
-      releaseDates: (fields[6] as Map?)?.cast<String, String>(),
-      isFavorite: fields[7] as bool,
+      head: fields[6] as String,
+      tail: fields[7] as String,
+      amiiboSeries: (fields[10] as Map?)?.cast<String, String>(),
+      releaseDates: (fields[8] as Map?)?.cast<String, String>(),
+      isFavorite: fields[9] as bool,
     );
   }
 
   @override
   void write(BinaryWriter writer, AmiiboModel obj) {
     writer
-      ..writeByte(8)
+      ..writeByte(11)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -45,9 +48,15 @@ class AmiiboModelAdapter extends TypeAdapter<AmiiboModel> {
       ..writeByte(5)
       ..write(obj.type)
       ..writeByte(6)
-      ..write(obj.releaseDates)
+      ..write(obj.head)
       ..writeByte(7)
-      ..write(obj.isFavorite);
+      ..write(obj.tail)
+      ..writeByte(8)
+      ..write(obj.releaseDates)
+      ..writeByte(9)
+      ..write(obj.isFavorite)
+      ..writeByte(10)
+      ..write(obj.amiiboSeries);
   }
 
   @override

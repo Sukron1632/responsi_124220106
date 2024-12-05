@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:responsi/amiibo_model.dart';
+import 'package:responsi/models/amiibo_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 class AmiiboCard extends StatelessWidget {

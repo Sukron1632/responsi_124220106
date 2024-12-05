@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:responsi/amiibo_model.dart';
-import 'package:responsi/api_card.dart';
-import 'package:responsi/api_service.dart';
-import 'package:responsi/custom_bottom_navbar.dart';
-import 'package:responsi/detail_screen.dart';
-import 'package:responsi/favorite_provider.dart';
-import 'package:responsi/favorite_screen.dart';
+import 'package:responsi/models/amiibo_model.dart';
+import 'package:responsi/widgets/api_card.dart';
+import 'package:responsi/services/api_service.dart';
+import 'package:responsi/widgets/custom_bottom_navbar.dart';
+import 'package:responsi/screens/detail_screen.dart';
+import 'package:responsi/providers/favorite_provider.dart';
+import 'package:responsi/screens/favorite_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -28,21 +28,24 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> _fetchAmiibos() async {
-    try {
-      final amiibos = await _apiService.fetchAmiibos();
-      setState(() {
-        _amiibos = amiibos;
-        _isLoading = false;
-      });
-    } catch (e) {
-      setState(() {
-        _isLoading = false;
-      });
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Failed to load Amiibos')),
-      );
-    }
+  try {
+    final amiibos = await _apiService.fetchAmiibos();
+    print("Amiibos fetched: ${amiibos.length} items");
+    setState(() {
+      _amiibos = amiibos;
+      _isLoading = false;
+    });
+  } catch (e) {
+    setState(() {
+      _isLoading = false;
+    });
+    print('Error fetching Amiibos: $e');  // Debugging log
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Failed to load Amiibos')),
+    );
   }
+}
+
 
   void _toggleFavorite(AmiiboModel amiibo) {
     final favoriteProvider =
@@ -85,6 +88,15 @@ class _HomeScreenState extends State<HomeScreen> {
         return Scaffold(
           appBar: AppBar(
             title: const Text('Amiibo Collection'),
+            centerTitle: true,
+            actions: [
+          IconButton(
+  icon: const Icon(Icons.logout),
+  onPressed: () => _logout(context), // Mengirimkan context ke dalam fungsi _logout
+  color: Colors.red,
+),
+
+        ], 
             automaticallyImplyLeading: false,
           ),
           body: _isLoading

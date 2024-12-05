@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:responsi/api_card.dart';
-import 'package:responsi/custom_bottom_navbar.dart';
-import 'package:responsi/favorite_provider.dart';
-import 'package:responsi/home_screen.dart';
+import 'package:responsi/widgets/api_card.dart';
+import 'package:responsi/widgets/custom_bottom_navbar.dart';
+import 'package:responsi/providers/favorite_provider.dart';
+import 'package:responsi/screens/home_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:provider/provider.dart';
 
