@@ -6,18 +6,18 @@ class ApiService {
 
   Future<List<AmiiboModel>> fetchAmiibos() async {
     try {
-      // Mengirim permintaan GET ke endpoint API Amiibo
+      
       final response = await _dio.get('https://www.amiiboapi.com/api/amiibo');
 
-      // Validasi respons
+      
       if (response.data != null && response.data['amiibo'] is List) {
         List amiiboData = response.data['amiibo'];
 
-        // Memetakan data dari JSON ke objek AmiiboModel
+        
         return amiiboData.map((item) {
           try {
             return item != null
-                ? AmiiboModel.fromJson(item) // Parsing per item
+                ? AmiiboModel.fromJson(item) 
                 : AmiiboModel(
                     id: '',
                     name: 'Unknown',
@@ -28,7 +28,7 @@ class ApiService {
                     head: 'Unknown',
                     tail: 'Unknown',
                     releaseDates: null,
-                    amiiboSeries: {'default': 'Unknown'}, // Menambahkan default amiiboSeries
+                    amiiboSeries: {'default': 'Unknown'}, 
                     isFavorite: false,
                   );
           } catch (e) {
@@ -43,7 +43,7 @@ class ApiService {
               head: 'Unknown',
               tail: 'Unknown',
               releaseDates: null,
-              amiiboSeries: {'default': 'Unknown'}, // Fallback untuk data error
+              amiiboSeries: {'default': 'Unknown'}, 
               isFavorite: false,
             );
           }
@@ -52,11 +52,11 @@ class ApiService {
         throw Exception('Unexpected response format or missing "amiibo" key');
       }
     } on DioError catch (dioError) {
-      // Menangani kesalahan yang spesifik pada Dio
+      
       print('DioError: ${dioError.message}');
       throw Exception('Failed to fetch amiibos: ${dioError.message}');
     } catch (e) {
-      // Menangani kesalahan lainnya
+      
       print('Error: $e');
       throw Exception('An unexpected error occurred: $e');
     }

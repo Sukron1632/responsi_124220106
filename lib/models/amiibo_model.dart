@@ -34,7 +34,7 @@ class AmiiboModel extends HiveObject {
   @HiveField(9)
   bool isFavorite;
 
-  @HiveField(10)  // Menambahkan field baru untuk amiiboSeries
+  @HiveField(10)  
   final Map<String, String>? amiiboSeries;
 
   AmiiboModel({
@@ -51,24 +51,23 @@ class AmiiboModel extends HiveObject {
     this.isFavorite = false,
   });
 
-  // Factory constructor untuk parsing dari JSON
 factory AmiiboModel.fromJson(Map<String, dynamic> json) {
   return AmiiboModel(
-    id: '${json['head'] ?? ''}${json['tail'] ?? ''}', // Kombinasi head dan tail, jika null gunakan string kosong
-    name: json['name'] ?? 'Unknown', // Default 'Unknown' jika null
-    character: json['character'] ?? 'Unknown', // Default 'Unknown' jika null
-    imageUrl: json['image'] ?? '', // Default string kosong jika null
-    gameSeries: json['gameSeries'] ?? 'Unknown', // Default 'Unknown' jika null
-    type: json['type'] ?? 'Unknown', // Default 'Unknown' jika null
-    head: json['head'] ?? 'Unknown', // Default 'Unknown' jika null
-    tail: json['tail'] ?? 'Unknown', // Default 'Unknown' jika null
+    id: '${json['head'] ?? ''}${json['tail'] ?? ''}', 
+    name: json['name'] ?? 'Unknown', 
+    character: json['character'] ?? 'Unknown', 
+    imageUrl: json['image'] ?? '', 
+    gameSeries: json['gameSeries'] ?? 'Unknown', 
+    type: json['type'] ?? 'Unknown', 
+    head: json['head'] ?? 'Unknown', 
+    tail: json['tail'] ?? 'Unknown', 
     amiiboSeries: json['amiiboSeries'] != null
-        ? {'default': json['amiiboSeries']}  // Memastikan value 'amiiboSeries' ada dan diproses dengan benar
-        : {'default': 'Unknown'}, // Set default jika null
+        ? {'default': json['amiiboSeries']}  
+        : {'default': 'Unknown'}, 
     releaseDates: json['release'] != null
-        ? Map<String, String>.from(json['release'] ?? {}) // Pastikan release adalah map yang valid
-        : {}, // Defaultkan ke map kosong jika null
-    isFavorite: json['isFavorite'] ?? false, // Default ke false jika null
+        ? Map<String, String>.from(json['release'] ?? {}) 
+        : {}, 
+    isFavorite: json['isFavorite'] ?? false, 
   );
 }
 
@@ -85,7 +84,7 @@ factory AmiiboModel.fromJson(Map<String, dynamic> json) {
       'tail': tail,
       'release': releaseDates,
       'isFavorite': isFavorite,
-      'amiiboSeries': amiiboSeries,  // Menambahkan properti amiiboSeries
+      'amiiboSeries': amiiboSeries,  
     };
   }
 }

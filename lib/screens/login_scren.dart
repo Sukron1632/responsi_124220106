@@ -65,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 prefixIcon: const Icon(Icons.lock),
                 suffixIcon: IconButton(
                   icon: const Icon(Icons.visibility),
-                  onPressed: () {}, // Tambahkan logika toggle visibility jika diperlukan
+                  onPressed: () {}, 
                 ),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),

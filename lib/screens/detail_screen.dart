@@ -19,7 +19,7 @@ class DetailScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Gambar Amiibo dalam box
+            
               Card(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
@@ -30,7 +30,7 @@ class DetailScreen extends StatelessWidget {
                   child: CachedNetworkImage(
                     imageUrl: amiibo.imageUrl.isNotEmpty
                         ? amiibo.imageUrl
-                        : 'https://via.placeholder.com/150', // Placeholder jika URL kosong
+                        : 'https://via.placeholder.com/150', 
                     height: 200,
                     width: double.infinity,
                     fit: BoxFit.cover,
@@ -43,7 +43,7 @@ class DetailScreen extends StatelessWidget {
               ),
               const SizedBox(height: 16),
 
-              // Nama Amiibo
+              
               Center(
                 child: Text(
                   amiibo.name.isNotEmpty ? amiibo.name : 'Unknown Name',

@@ -92,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
             actions: [
           IconButton(
   icon: const Icon(Icons.logout),
-  onPressed: () => _logout(context), // Mengirimkan context ke dalam fungsi _logout
+  onPressed: () => _logout(context), 
   color: Colors.red,
 ),
 

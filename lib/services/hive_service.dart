@@ -7,19 +7,19 @@ class HiveService {
   static const String _usersBoxName = 'users';
   static const String _favoritesBoxName = 'favorites';
 
-  // Fungsi inisialisasi Hive
+  
   static Future<void> init() async {
     try {
-      await Hive.initFlutter();  // Inisialisasi Hive
-      _registerAdapters();  // Pendaftaran adapter
-      await _openBoxes();  // Membuka semua box yang diperlukan
+      await Hive.initFlutter();  
+      _registerAdapters();  
+      await _openBoxes();  
     } catch (e) {
       debugPrint('Hive initialization error: $e');
       rethrow;
     }
   }
 
-  // Menyimpan data user ke Hive
+  
   static Future<void> saveUser(User user) async {
     try {
       final userBox = await Hive.openBox<User>(_usersBoxName);
@@ -31,7 +31,7 @@ class HiveService {
     }
   }
 
-  // Mendapatkan data user berdasarkan username
+ 
   static User? getUser(String username) {
     try {
       final userBox = Hive.box<User>(_usersBoxName);
@@ -42,7 +42,7 @@ class HiveService {
     }
   }
 
-  // Validasi user
+  
   static bool validateUser(String username, String password) {
     try {
       final user = getUser(username);
@@ -53,7 +53,7 @@ class HiveService {
     }
   }
 
-  // Mengecek apakah username sudah ada
+
   static bool isUsernameTaken(String username) {
     try {
       final userBox = Hive.box<User>(_usersBoxName);
@@ -64,9 +64,9 @@ class HiveService {
     }
   }
 
-  // Mendaftarkan Adapter
+  
   static void _registerAdapters() {
-    // Pendaftaran adapter hanya jika belum terdaftar
+    
     if (!Hive.isAdapterRegistered(UserAdapter().typeId)) {
       Hive.registerAdapter(UserAdapter());
       debugPrint('UserAdapter registered');
@@ -78,10 +78,10 @@ class HiveService {
     }
   }
 
-  // Membuka box-box yang diperlukan
+  
   static Future<void> _openBoxes() async {
     try {
-      // Membuka box untuk User dan AmiiboModel jika belum terbuka
+      
       if (!Hive.isBoxOpen(_usersBoxName)) {
         await Hive.openBox<User>(_usersBoxName);
         debugPrint('User box opened');
@@ -96,12 +96,12 @@ class HiveService {
     }
   }
 
-  // Menyimpan AmiiboModel ke favorit
+  
   static Future<void> saveFavorite(AmiiboModel amiibo) async {
     try {
       final favBox = Hive.box<AmiiboModel>(_favoritesBoxName);
 
-      // Memastikan amiibo belum ada di favorit
+      
       if (!favBox.values.any((existingAmiibo) => existingAmiibo.id == amiibo.id)) {
         await favBox.put(amiibo.id, amiibo);
         debugPrint('Amiibo ${amiibo.name} saved to favorites');
@@ -112,7 +112,7 @@ class HiveService {
     }
   }
 
-  // Menghapus AmiiboModel dari favorit
+  
   static Future<void> removeFavorite(AmiiboModel amiibo) async {
     try {
       final favBox = Hive.box<AmiiboModel>(_favoritesBoxName);
@@ -124,7 +124,7 @@ class HiveService {
     }
   }
 
-  // Mendapatkan semua data favorit
+  
   static List<AmiiboModel> getFavorites() {
     try {
       final favBox = Hive.box<AmiiboModel>(_favoritesBoxName);
@@ -135,7 +135,7 @@ class HiveService {
     }
   }
 
-  // Mengecek apakah AmiiboModel ada di favorit
+  
   static bool isFavorite(AmiiboModel amiibo) {
     try {
       final favBox = Hive.box<AmiiboModel>(_favoritesBoxName);
@@ -146,7 +146,7 @@ class HiveService {
     }
   }
 
-  // Menghapus semua data favorit
+  
   static Future<void> clearFavorites() async {
     try {
       final favBox = Hive.box<AmiiboModel>(_favoritesBoxName);
@@ -158,7 +158,7 @@ class HiveService {
     }
   }
 
-  // Menutup semua box Hive
+  
   static Future<void> closeBoxes() async {
     try {
       await Hive.close();

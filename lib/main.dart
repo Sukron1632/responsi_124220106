@@ -11,20 +11,20 @@ import 'package:responsi/models/user_model.dart';
 import 'package:responsi/providers/favorite_provider.dart'; 
 
 void main() async {
-  // Pastikan binding widget sudah diinisialisasi
+  
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Inisialisasi Hive
+  
   await Hive.initFlutter();
 
   Hive.registerAdapter(UserAdapter());
-  // Registrasi Adapter untuk AmiiboModel
+  
   Hive.registerAdapter(AmiiboModelAdapter());
 
-  // Membuka Box Hive untuk AmiiboModel
+  
   await Hive.openBox<AmiiboModel>('amiiboBox');
 
-  // Jalankan aplikasi
+  
   runApp(const MyApp());
 }
 
@@ -63,10 +63,10 @@ class MyApp extends StatelessWidget {
           ),
         ),
 
-        // Rute awal
+        
         initialRoute: '/login',
 
-        // Definisi rute statis
+        
         routes: {
           '/login': (context) => const LoginScreen(),
           '/register': (context) => const RegisterScreen(),
@@ -74,19 +74,19 @@ class MyApp extends StatelessWidget {
           '/favorites': (context) => const FavoriteScreen(),
         },
 
-        // Rute dinamis untuk DetailScreen
+        
         onGenerateRoute: (settings) {
           if (settings.name == '/detail') {
             final amiibo = settings.arguments as AmiiboModel?;
 
-            // Menangani detail AmiiboModel
+           
             if (amiibo != null) {
               return MaterialPageRoute(
                 builder: (context) => DetailScreen(amiibo: amiibo),
               );
             }
 
-            // Fallback jika tidak ada data yang valid
+            
             return MaterialPageRoute(
               builder: (context) => Scaffold(
                 appBar: AppBar(title: const Text('Error')),
@@ -99,7 +99,7 @@ class MyApp extends StatelessWidget {
           return null;
         },
 
-        // Handler untuk rute yang tidak terdefinisi
+        
         onUnknownRoute: (settings) {
           return MaterialPageRoute(
             builder: (context) => Scaffold(

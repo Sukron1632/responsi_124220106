@@ -19,30 +19,30 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   void _register() {
     if (_formKey.currentState!.validate()) {
-      // Cek apakah username sudah ada
+     
       if (HiveService.isUsernameTaken(_usernameController.text)) {
         _showErrorDialog('Username sudah terdaftar');
         return;
       }
 
-      // Cek apakah password cocok
+    
       if (_passwordController.text != _confirmPasswordController.text) {
         _showErrorDialog('Password tidak cocok');
         return;
       }
 
-      // Buat user baru
+     
       final newUser = User(
         username: _usernameController.text,
         password: _passwordController.text
       );
 
-      // Simpan user
+      
       HiveService.saveUser(newUser).then((_) {
-        // Navigasi ke layar login setelah registrasi berhasil
+        
         Navigator.pushReplacementNamed(context, '/login');
         
-        // Tampilkan snackbar sukses
+       
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Registrasi berhasil!')),
         );
@@ -82,7 +82,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           key: _formKey,
           child: ListView(
             children: [
-              // Username TextField
+              
               TextFormField(
                 controller: _usernameController,
                 decoration: InputDecoration(
@@ -102,7 +102,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               SizedBox(height: 16),
 
-              // Password TextField
+              
               TextFormField(
                 controller: _passwordController,
                 obscureText: !_isPasswordVisible,
@@ -135,7 +135,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               SizedBox(height: 16),
 
-              // Konfirmasi Password TextField
+              
               TextFormField(
                 controller: _confirmPasswordController,
                 obscureText: !_isPasswordVisible,
@@ -156,7 +156,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               SizedBox( height: 16),
 
-              // Tombol Registrasi
+             
               ElevatedButton(
                 onPressed: _register,
                 child: Text('Daftar'),
