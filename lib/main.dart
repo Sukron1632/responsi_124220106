@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:responsi/login_scren.dart'; 
-import 'package:responsi/register_screen.dart'; 
+import 'package:responsi/screens/login_scren.dart'; 
+import 'package:responsi/screens/register_screen.dart'; 
 import 'package:responsi/screens/home_screen.dart'; 
 import 'package:responsi/screens/favorite_screen.dart'; 
 import 'package:responsi/screens/detail_screen.dart'; 
 import 'package:responsi/models/amiibo_model.dart'; 
-import 'package:responsi/user_model.dart';
+import 'package:responsi/models/user_model.dart';
 import 'package:responsi/providers/favorite_provider.dart'; 
 
 void main() async {

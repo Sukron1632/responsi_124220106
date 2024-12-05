@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart'; // Import Shared Preferences
-import '../services/hive_service.dart';
+import '../../services/hive_service.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

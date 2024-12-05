@@ -1,7 +1,7 @@
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter/foundation.dart';
 import 'package:responsi/models/amiibo_model.dart';
-import 'package:responsi/user_model.dart';
+import 'package:responsi/models/user_model.dart';
 
 class HiveService {
   static const String _usersBoxName = 'users';
